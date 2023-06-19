@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sushma.s\\source\\repos\\Porject_application\\Porject_application\\Project_application.csproj": {}
+    "D:\\Project\\Naukri_application\\Project_application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sushma.s\\source\\repos\\Porject_application\\Porject_application\\Project_application.csproj": {
+    "D:\\Project\\Naukri_application\\Project_application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sushma.s\\source\\repos\\Porject_application\\Porject_application\\Project_application.csproj",
+        "projectUniqueName": "D:\\Project\\Naukri_application\\Project_application.csproj",
         "projectName": "Project_application",
-        "projectPath": "C:\\Users\\sushma.s\\source\\repos\\Porject_application\\Porject_application\\Project_application.csproj",
-        "packagesPath": "C:\\Users\\sushma.s\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sushma.s\\source\\repos\\Porject_application\\Porject_application\\obj\\",
+        "projectPath": "D:\\Project\\Naukri_application\\Project_application.csproj",
+        "packagesPath": "C:\\Users\\mannaiya.l\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\Naukri_application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\sushma.s\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mannaiya.l\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
