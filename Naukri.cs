@@ -23,21 +23,21 @@ namespace Project_application
                 {
                     case 1:
                         {
-                            Console.WriteLine("Enter your username:");
-                            string username = Console.ReadLine();
+                            Console.WriteLine("Enter your Phone number:");
+                            long phone_number = long.Parse(Console.ReadLine());
                             Console.WriteLine("Enter your password:");
                             string password = Console.ReadLine();
-                            account.CreateAccount(username, password);
+                            account.CreateAccount(user_id, password);
                         }
                         break;
 
                     case 2:
                         {
-                            Console.WriteLine("Enter your username:");
-                            string username = Console.ReadLine();
+                            Console.WriteLine("Enter your Phone number:");
+                            long phone_number = Console.ReadLine();
                             Console.WriteLine("Enter your password:");
                             string password = Console.ReadLine();
-                            account.Login(username, password);
+                            account.Login(user_id, password);
                         }
                         break;
 

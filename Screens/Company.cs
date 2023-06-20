@@ -8,5 +8,6 @@ namespace Project_application.Screens
 {
     internal class Company
     {
+
     }
 }

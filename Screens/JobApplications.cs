@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_application.Screens
 {
-    internal class JobApplications
+    public class JobApplications
     {
     }
 }
