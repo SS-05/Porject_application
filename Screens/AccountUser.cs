@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Buffers.Text;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +17,7 @@ namespace Project_application.Screens
         {
             if (FindUser(user_id) == null)
             {
-                users.Add(new User(username, password, user_type, user_id, skillset, experience, phone_number));
+                users.Add(new User(username, password, user_type, user_id, skillset, experience, phone_number,null,null,null));
                 Console.WriteLine("Account created successfully!");
             }
             else
@@ -23,41 +25,48 @@ namespace Project_application.Screens
                 Console.WriteLine("User already exists!");
             }
         }
-        private User? FindUser(long user_id, string password)
+        private User? FindUser(long phoneNumber, string password)
         {
             foreach (User user in users)
             {
-                if (user.user_id == user_id && user.password == password)
+                if (user.phone_number == phoneNumber && user.password == password)
                 {
                     return user;
                 }
             }
             return null;
         }
-        private User? FindUser(long user_id)
+
+        private User? FindUser(long phoneNumber)
         {
             foreach (User user in users)
             {
-                if (user.user_id == user_id)
+                if (user.phone_number == phoneNumber)
                 {
                     return user;
                 }
             }
             return null;
         }
-        public void Login(long user_id, string password)
+        public void Login(long phone_number, string password)
         {
-            User? user = FindUser(user_id, password);
+            User? user = FindUser(phone_number);
             if (user != null)
             {
-                Console.WriteLine("Login successful");
+                if (user.password == password)
+                {
+                    Console.WriteLine("Login successful");
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect password! Please try again.");
+                }
             }
             else
             {
-                Console.WriteLine("Invalid username or password! Please try again.");
+                Console.WriteLine("Account does not exist!");
             }
         }
-      
         public void UpdatePassword(long user_id, string newPassword)
         {
             User user = FindUser(user_id);
@@ -98,6 +107,28 @@ namespace Project_application.Screens
             {
                 Console.WriteLine("Invalid username or password! Please try again.");
             }
+        }
+        public bool ValidateCredentials(long phone_number, string password)
+        {
+            User user = FindUser(phone_number);
+            if (user != null && user.password == password)
+            {
+                return true;
+            }
+            return false;
+        }
+        public string GenerateRandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var random = new Random();
+            var result = new StringBuilder(length);
+
+            for (int i = 0; i < length; i++)
+            {
+                result.Append(chars[random.Next(chars.Length)]);
+            }
+
+            return result.ToString();
         }
         public void ReadUsers()
         {

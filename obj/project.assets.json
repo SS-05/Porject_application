@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\jadavmanish.p\\.nuget\\packages\\": {}
+    "C:\\Users\\sushma.s\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jadavmanish.p\\Documents\\TEDC\\Project Naukri\\Naukri_application\\Project_application.csproj",
+      "projectUniqueName": "C:\\Users\\sushma.s\\source\\repos\\Porject_application\\Porject_application\\Project_application.csproj",
       "projectName": "Project_application",
-      "projectPath": "C:\\Users\\jadavmanish.p\\Documents\\TEDC\\Project Naukri\\Naukri_application\\Project_application.csproj",
-      "packagesPath": "C:\\Users\\jadavmanish.p\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jadavmanish.p\\Documents\\TEDC\\Project Naukri\\Naukri_application\\obj\\",
+      "projectPath": "C:\\Users\\sushma.s\\source\\repos\\Porject_application\\Porject_application\\Project_application.csproj",
+      "packagesPath": "C:\\Users\\sushma.s\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sushma.s\\source\\repos\\Porject_application\\Porject_application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jadavmanish.p\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sushma.s\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
