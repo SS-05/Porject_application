@@ -11,7 +11,7 @@ namespace Project_application.Screens
 {
     public class AccountUser
     {
-        List<User> users = new List<User>();
+        static public List<User> users = new List<User>();
 
         public void signup(string username, string password, string user_type, int user_id, List<string> skillset, int experience, long phone_number)
         {
@@ -25,7 +25,42 @@ namespace Project_application.Screens
                 Console.WriteLine("User already exists!");
             }
         }
-        private User? FindUser(long phoneNumber, string password)
+        public  void dispAppliedJobs(List<Job> jobs)
+        {
+            if(jobs != null && jobs.Count > 0)
+            {
+                foreach (Job item in jobs)
+
+                {
+                    Console.WriteLine("Company name:{0}", item.company_name);
+                    Console.WriteLine("Min years of expereince neeeded {0}", item.yoe);
+                    Console.WriteLine("The type of job is {0}", item.job_type);
+
+                }
+            }
+            else
+            {
+                Console.WriteLine("No job vacancy at the present. Check sometimes later");
+            }
+           
+           /* if (new AccountUser().FindUser(id) != null)
+            {
+                foreach (Job item in (new AccountUser().FindUser(id).applidJobs))
+
+                {
+                    Console.WriteLine("Company name:{0}", item.company_name);
+                    Console.WriteLine("Min years of expereince neeeded {0}", item.yoe);
+                    Console.WriteLine("The type of job is {0}", item.job_type);
+
+                }
+            }
+            else
+            {
+                Console.WriteLine("No job vacancy at the present. Check sometimes later");
+            }*/
+           
+        }
+        public User? FindUser(long phoneNumber, string password)
         {
             foreach (User user in users)
             {
@@ -37,7 +72,7 @@ namespace Project_application.Screens
             return null;
         }
 
-        private User? FindUser(long phoneNumber)
+        public User? FindUser(long phoneNumber)
         {
             foreach (User user in users)
             {
@@ -48,6 +83,7 @@ namespace Project_application.Screens
             }
             return null;
         }
+        
         public void Login(long phone_number, string password)
         {
             User? user = FindUser(phone_number);
@@ -55,6 +91,7 @@ namespace Project_application.Screens
             {
                 if (user.password == password)
                 {
+
                     Console.WriteLine("Login successful");
                 }
                 else
@@ -95,6 +132,27 @@ namespace Project_application.Screens
             }
         }
 
+        public string GetUserType(long phoneNumber)
+        {
+            /*List<User> registeredUsers = new List<User>();*/
+            User user = users.Find(u => u.phone_number == phoneNumber);
+           
+
+            if (user != null)
+            {
+                return user.user_type;
+            }
+
+            return string.Empty;
+        }
+        public void DisplayCurrentUser()
+        {
+            foreach(var user in users)
+            {
+                Console.WriteLine(user.username);
+                Console.WriteLine(user.password);
+            }
+        }
         public void DeleteAccount(long user_id, string password)
         {
             User? user = FindUser(user_id, password);
@@ -116,6 +174,37 @@ namespace Project_application.Screens
                 return true;
             }
             return false;
+        }
+        public void WithdrawJobs(long id)
+        {
+            User user = FindUser(id);
+            Console.WriteLine("The applied job list(s) is as follows:");
+            if (user != null && user.applidJobs != null && user.applidJobs.Count> 0) {
+
+                foreach (var item in user.applidJobs)
+                {
+                    Console.WriteLine(item.company_name+"  "+item.job_type);
+                }
+                Console.WriteLine("Enter Id to withdraw");
+                int jid = int.Parse(Console.ReadLine());
+                Job job = user.applidJobs.Find(u => u.Id == jid);
+
+                if (job != null)
+                {
+                    user.applidJobs.Remove(job);
+                }
+                else
+                {
+                    Console.WriteLine("No jobs present to withdraw");
+                }
+            }
+            else
+            {
+                Console.WriteLine("You havent applied for any job");
+            }
+           
+            
+
         }
         public string GenerateRandomString(int length)
         {
