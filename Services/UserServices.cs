@@ -21,7 +21,7 @@ namespace Project_application.Services
 
             while (userLoggedIn)
             {
-                Console.WriteLine("///////////////////////////////////////////////////////////////////////////////////////////////////");
+                Console.WriteLine("///////////////////////////////////////////////USER MENU////////////////////////////////////////////////////");
                 Console.WriteLine("Select an option:");
                 Console.WriteLine("1) Update Username\n2) Update Password\n3) Delete Account\n4)Apply Job\n5)View Applied Job(s)\n6)Withdraw Application\n7) Display Users\n8)Logout");
                 Console.WriteLine("///////////////////////////////////////////////////////////////////////////////////////////////////");

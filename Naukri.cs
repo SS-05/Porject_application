@@ -6,12 +6,12 @@ using System.Net.Http.Headers;
 
 namespace Project_application
 {
-    public class Naukri
+    public class Naukri : AuthenticationServices
     {
         static void Main(string[] args)
         {
             bool flag = true;
-            AuthenticationServices authenticationServices = new AuthenticationServices();
+            Naukri authenticationServices = new Naukri();
 
 
             while (flag)

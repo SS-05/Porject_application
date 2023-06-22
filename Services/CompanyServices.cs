@@ -10,18 +10,21 @@ namespace Project_application.Services
 {
     public  class CompanyServices
     {
-        AccountUser account = new AccountUser();
+        /*AccountUser account = new AccountUser();*/
         Company? comp = null;
-        bool flag = true;
-        User curUsr = null;
+        /*bool flag = true;
+        User curUsr = null;*/
         public void HandleCompanyServices()
         {
             bool companyLoggedIn = true;
 
             while (companyLoggedIn)
             {
+                Console.WriteLine("///////////////////////////////////////////////COMPANY MENU////////////////////////////////////////////////////");
                 Console.WriteLine("Select an option:");
                 Console.WriteLine("1) Create Job\n2) Delete Job\n3) Modify Account\n4)Display Created Jobs\n5) Logout");
+                Console.WriteLine("///////////////////////////////////////////////////////////////////////////////////////////////////");
+
                 int companyOption = Convert.ToInt32(Console.ReadLine());
 
                 switch (companyOption)

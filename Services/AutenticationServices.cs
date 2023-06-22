@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Project_application.Services
 {
-    public class AuthenticationServices
+    public class AuthenticationServices 
     {
         AccountUser account = new AccountUser();
         Company? comp = null;

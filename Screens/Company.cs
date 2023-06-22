@@ -16,19 +16,17 @@ namespace Project_application.Screens
 
 {
 
-    internal class Company
+    internal  class Company : Company_abst
 
     {
 
         public User user;
-        public Company(User comp_user)
-
+        public Company(User comp_user) : base(comp_user)
         {
-
+            // Constructor implementation
             user = comp_user;
-
         }
-        public void createJob(Job job)
+        public override void createJob(Job job)
         {
             if (user.createdJobs == null)
             {
@@ -39,7 +37,7 @@ namespace Project_application.Screens
 
         }
 
-        public void deleteJob(long id)
+        public override void deleteJob(long id)
 
         {
             Job jobToDelete = user.createdJobs.FirstOrDefault(job => job.Id == id);
@@ -49,7 +47,7 @@ namespace Project_application.Screens
 
             Console.WriteLine("Job deleted");
 
-        }public void updateJob(long jobId)
+        }public override void updateJob(long jobId)
 
         {
             Job jobToDelete = user.createdJobs.FirstOrDefault(job => job.Id == jobId);
@@ -121,7 +119,8 @@ namespace Project_application.Screens
         //display own jobs and users applied to them
 
         //apply filters based on experience, education, skills, etc.
-        public void showallcpompjobstoApply()
+        public override void showallcpompjobstoApply()
+            
         {
             if (user.createdJobs == null || user.createdJobs.Count == 0)
             {
@@ -146,7 +145,7 @@ namespace Project_application.Screens
             }
 
          }
-        public void displaycreatedJObsCompany()
+        public override void displaycreatedJObsCompany()
         {
             if(user.createdJobs!=null && user.createdJobs.Count > 0)
             {
@@ -168,7 +167,7 @@ namespace Project_application.Screens
 
             }
         }
-        public void dispApplicants(List<User> users)
+        public override void dispApplicants(List<User> users)
         {
 
             //display users
