@@ -71,7 +71,9 @@ namespace Project_application.Services
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Blue;
                                 Console.WriteLine("No jobs is present to modify");
+                                Console.ForegroundColor = ConsoleColor.White;
                             }
 
                         }
@@ -89,12 +91,16 @@ namespace Project_application.Services
                     case 5:
                         {
                             companyLoggedIn = false;
+                            Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("Logged out successfully.");
+                            Console.ForegroundColor = ConsoleColor.White;
                         }
                         break;
 
                     default:
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid option! Please try again.");
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                 }
             }

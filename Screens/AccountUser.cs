@@ -5,6 +5,7 @@ using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Project_application.Helpers;
 using Project_application.Models;
 
 namespace Project_application.Screens
@@ -18,11 +19,15 @@ namespace Project_application.Screens
             if (FindUser(user_id) == null)
             {
                 users.Add(new User(username, password, user_type, user_id, skillset, experience, phone_number,null,null,null));
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Account created successfully!");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("User already exists!");
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
         public  void dispAppliedJobs(List<Job> jobs)
@@ -40,6 +45,7 @@ namespace Project_application.Screens
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("No job vacancy at the present. Check sometimes later");
             }
            
@@ -83,7 +89,7 @@ namespace Project_application.Screens
             }
             return null;
         }
-        
+
         public void Login(long phone_number, string password)
         {
             User? user = FindUser(phone_number);
@@ -92,18 +98,25 @@ namespace Project_application.Screens
                 if (user.password == password)
                 {
                     Console.WriteLine("-------------------------------");
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Login successful");
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("-------------------------------");
 
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Incorrect password! Please try again.");
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Account does not exist!");
+                Console.ForegroundColor = ConsoleColor.White;
+
             }
         }
         public void UpdatePassword(long user_id, string newPassword)
@@ -111,12 +124,18 @@ namespace Project_application.Screens
             User user = FindUser(user_id);
             if (user != null)
             {
-                user.password = newPassword;
+                Password_auth auth = new(user);
+                auth.setPassword(newPassword);
+                user.password = auth.GetPassword();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Password updated successfully");
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("User not found! Please check the username.");
+                Console.ForegroundColor = ConsoleColor.White;
+
             }
         }
 
@@ -127,13 +146,17 @@ namespace Project_application.Screens
             {
                 user.username = newUsername;
                 Console.WriteLine("*********************************************");
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Username updated successfully");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("*********************************************");
             }
             else
             {
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Invalid username or password! Please try again.");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
             }
@@ -166,11 +189,15 @@ namespace Project_application.Screens
             if (user != null)
             {
                 users.Remove(user);
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Account deleted successfully");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Invalid username or password! Please try again.");
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
         public bool ValidateCredentials(long phone_number, string password)
@@ -202,12 +229,16 @@ namespace Project_application.Screens
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("No jobs present to withdraw");
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("You havent applied for any job");
+                Console.ForegroundColor = ConsoleColor.White;
             }
            
             

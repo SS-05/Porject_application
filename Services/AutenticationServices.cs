@@ -10,15 +10,19 @@ using System.Threading.Tasks;
 
 namespace Project_application.Services
 {
-    public class AuthenticationServices 
+    public class AuthenticationServices
     {
         AccountUser account = new AccountUser();
         Company? comp = null;
-        bool flag = true;
+        /*bool flag = true;*/
         User curUsr = null;
         public void Login()
         {
-            {
+            AccountUser account = new AccountUser();
+            Company? comp = null;
+            bool flag = true;
+            User curUsr = null;
+            /*{*/
                 Console.WriteLine("Enter your Phone number:");
                 long phone_number = long.Parse(Console.ReadLine());
                 Console.WriteLine("Enter your password:");
@@ -26,6 +30,8 @@ namespace Project_application.Services
 
 
                 // Check if the username and password are valid
+                //Console.WriteLine("entered login");
+                //Console.WriteLine(account.ValidateCredentials(phone_number, password));
                 if (account.ValidateCredentials(phone_number, password))
                 {
                     string captcha = account.GenerateRandomString(6);
@@ -34,13 +40,14 @@ namespace Project_application.Services
                     string userInput = Console.ReadLine();
                     if (userInput == captcha)
                     {
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("*****************************************************************************");
                         Console.WriteLine("CAPTCHA verification successful.Logged in successfully!");
                         Console.WriteLine("*****************************************************************************");
+                        Console.ForegroundColor = ConsoleColor.White;
                         account.Login(phone_number, password);
                         curUsr = account.FindUser(phone_number);
                         string userType = account.GetUserType(phone_number);
-
                         if (userType.ToUpper() == "USER")
                         {
                             UserServices userServices = new UserServices();
@@ -51,18 +58,21 @@ namespace Project_application.Services
                             CompanyServices companyServices = new CompanyServices();
                             companyServices.HandleCompanyServices();
                         }
-                        else
-                        {
-                            Console.WriteLine("CAPTCHA verification failed. Please try again.");
-                        }
                     }
                     else
-                    {
-                        Console.WriteLine("Account does not exist!");
-                    }
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("CAPTCHA verification failed. Please try again.");
+                    Console.ForegroundColor = ConsoleColor.Green;
                 }
-            }
-        } 
+                }else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Account does not exist!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+       
+    } 
     public void Signup()
         {
             int? experience = null;
@@ -72,7 +82,22 @@ namespace Project_application.Services
             string password = Console.ReadLine();
             Console.WriteLine("Enter user_type (User/Company):");
             string user_type = Console.ReadLine();
-            Console.WriteLine("Enter user ID (numeric value):");
+
+            bool flg = true;
+
+            while (flg)
+            {
+                if (user_type.ToString().ToUpper() == "USER" || user_type.ToString().ToUpper() == "COMPANY")
+                {
+                    flg = false;
+                }
+                else
+                {
+                    Console.WriteLine("The user type should be User/Company");
+                    user_type = Console.ReadLine();
+                }
+            }
+             Console.WriteLine("Enter user ID (numeric value):");
             int user_id = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter skillset (comma-separated values):");
             string skillsetInput = Console.ReadLine();
@@ -93,6 +118,7 @@ namespace Project_application.Services
             Console.WriteLine("User Type: " + user_type);
             Console.WriteLine("User ID: " + user_id);
             Console.WriteLine("Skillset: " + string.Join(", ", skillset));
+
             if (user_type.ToUpper() == "USER" && experience != null)
             {
                 Console.WriteLine("Experience: " + experience);
@@ -112,7 +138,9 @@ namespace Project_application.Services
             else
             {
                 Console.WriteLine("-----------------------------------");
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Account creation cancelled:(");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("-----------------------------------");
 
             }

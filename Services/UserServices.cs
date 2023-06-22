@@ -13,7 +13,7 @@ namespace Project_application.Services
     {
         AccountUser account = new AccountUser();
         Company? comp = null;
-        bool flag = true;
+        /*bool flag = true;*/
         User curUsr = null;
         public void HandleUserLoggedIn()
         {
@@ -34,6 +34,7 @@ namespace Project_application.Services
 
                     case 1:
                         {
+                            /*Console.ForegroundColor = ConsoleColor.Red;*/
                             Console.Write("Enter the Phonenumber");
                             long p_number = long.Parse(Console.ReadLine());
                             Console.WriteLine("Enter the new username");

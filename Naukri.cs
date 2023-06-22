@@ -16,9 +16,11 @@ namespace Project_application
 
             while (flag)
             {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
                 Console.WriteLine("*********************************");
                 Console.WriteLine("***** Welcome to Naukri.com *****");
                 Console.WriteLine("*********************************");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("SELECT AN OPTION:\n1) Sign up\n2) Login");
                 int choice = Convert.ToInt32(Console.ReadLine());
 
