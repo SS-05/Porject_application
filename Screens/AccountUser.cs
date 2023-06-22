@@ -13,7 +13,7 @@ namespace Project_application.Screens
     {
         static public List<User> users = new List<User>();
 
-        public void signup(string username, string password, string user_type, int user_id, List<string> skillset, int experience, long phone_number)
+        public void signup(string username, string password, string user_type, int user_id, List<string> skillset, int? experience, long phone_number)
         {
             if (FindUser(user_id) == null)
             {
@@ -91,8 +91,10 @@ namespace Project_application.Screens
             {
                 if (user.password == password)
                 {
-
+                    Console.WriteLine("-------------------------------");
                     Console.WriteLine("Login successful");
+                    Console.WriteLine("-------------------------------");
+
                 }
                 else
                 {
@@ -124,11 +126,16 @@ namespace Project_application.Screens
             if (user != null)
             {
                 user.username = newUsername;
+                Console.WriteLine("*********************************************");
                 Console.WriteLine("Username updated successfully");
+                Console.WriteLine("*********************************************");
             }
             else
             {
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 Console.WriteLine("Invalid username or password! Please try again.");
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
             }
         }
 

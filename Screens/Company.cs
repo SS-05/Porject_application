@@ -53,60 +53,69 @@ namespace Project_application.Screens
 
         {
             Job jobToDelete = user.createdJobs.FirstOrDefault(job => job.Id == jobId);
-            int index = user.createdJobs.IndexOf(jobToDelete);
-            Console.WriteLine("Enter the field you wish to update");
-            Console.WriteLine("Select\n1)Location\n2)Shift\n3)Skillset\n4)Years of experience");
-            int choice=Convert.ToInt32(Console.ReadLine());
-            switch (choice)
+
+            if (jobToDelete == null)
             {
-                case 1:
-                    {
-                        Console.WriteLine("Enter the updated location");
-                        string location = Console.ReadLine();
-                        jobToDelete.location = location;
-                        user.createdJobs[index] = jobToDelete;
+                Console.WriteLine("Job Not Found to update");
+                //return;
 
-
-                    }
-                    break;
-                case 2:
-                    {
-                        Console.WriteLine("Enter the updated Shift Details");
-                        string shift = Console.ReadLine();
-                        jobToDelete.shift = shift;
-                        user.createdJobs[index] = jobToDelete;
-
-
-                    }
-                    break;
-                case 3:
-                    {
-                        Console.WriteLine("Enter the updated skilset needed");
-                        string skillset = Console.ReadLine();
-                        jobToDelete.skillset = skillset;
-                        user.createdJobs[index] = jobToDelete;
-
-
-                    }
-                    break;
-                case 4 :
-                    {
-                        Console.WriteLine("Enter the updated Years of Expereince required");
-                        int yoe = Convert.ToInt32(Console.ReadLine());
-                        jobToDelete.yoe= yoe;
-                        user.createdJobs[index] = jobToDelete;
-
-
-                    }
-                    break;
-                default:
-                    {
-                        Console.WriteLine("Invalid option");
-                    }
-                    break;
             }
+            else
+            {
+                int index = user.createdJobs.IndexOf(jobToDelete);
+                Console.WriteLine("Enter the field you wish to update");
+                Console.WriteLine("Select\n1)Location\n2)Shift\n3)Skillset\n4)Years of experience");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        {
+                            Console.WriteLine("Enter the updated location");
+                            string location = Console.ReadLine();
+                            jobToDelete.location = location;
+                            user.createdJobs[index] = jobToDelete;
 
 
+                        }
+                        break;
+                    case 2:
+                        {
+                            Console.WriteLine("Enter the updated Shift Details");
+                            string shift = Console.ReadLine();
+                            jobToDelete.shift = shift;
+                            user.createdJobs[index] = jobToDelete;
+
+
+                        }
+                        break;
+                    case 3:
+                        {
+                            Console.WriteLine("Enter the updated skilset needed");
+                            string skillset = Console.ReadLine();
+                            jobToDelete.skillset = skillset;
+                            user.createdJobs[index] = jobToDelete;
+
+
+                        }
+                        break;
+                    case 4:
+                        {
+                            Console.WriteLine("Enter the updated Years of Expereince required");
+                            int yoe = Convert.ToInt32(Console.ReadLine());
+                            jobToDelete.yoe = yoe;
+                            user.createdJobs[index] = jobToDelete;
+
+
+                        }
+                        break;
+                    default:
+                        {
+                            Console.WriteLine("Invalid option");
+                        }
+                        break;
+                }
+
+            }
         }
 
         //display own jobs and users applied to them
@@ -125,18 +134,21 @@ namespace Project_application.Screens
                 {
                     if (user.user_type.ToUpper() == "COMPANY")
                     {
-
+                        if (user.createdJobs != null && user.createdJobs.Count > 0)
+                        {
+                            user.createdJobs.ForEach(action => {
+                                Console.WriteLine(action.company_name + "\t" + action.yoe + "\t" + action.Id);
+                            });
+                        }
                     }
-                    Console.WriteLine(user.user_id + " " + user.password);
-
 
                 });
             }
 
-            }
+         }
         public void displaycreatedJObsCompany()
         {
-            if(user.createdJobs!=null || user.createdJobs.Count > 0)
+            if(user.createdJobs!=null && user.createdJobs.Count > 0)
             {
                 user.createdJobs.
                 ForEach(user =>
@@ -150,13 +162,11 @@ namespace Project_application.Screens
             }
             else
             {
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
                 Console.WriteLine("No jobs for now:(");
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
+
             }
-            
-            
-
-           
-
         }
         public void dispApplicants(List<User> users)
         {

@@ -19,9 +19,9 @@ namespace Project_application.Models
         public List<User>? applicants;
         //for user
         public List<Job>? applidJobs;
-        public int experience;
+        public int? experience;
         public long phone_number;
-        public User(string username, string password, string user_type, long user_id, List<string> skillset, int experience, long phone_number, List<Job>? applidJobs, List<User>? applicants,List<Job>? createdJobs)
+        public User(string username, string password, string user_type, long user_id, List<string> skillset, int? experience, long phone_number, List<Job>? applidJobs, List<User>? applicants,List<Job>? createdJobs)
         {
             this.username = username;
             this.password = password;
