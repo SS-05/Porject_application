@@ -10,8 +10,14 @@ namespace Project_application.Services
 {
     public  class CompanyServices
     {
+        //User usr ;
+        Company comp;
+        public CompanyServices(User? usr) {
+            //this.usr = usr;
+            comp = new Company(usr);
+        }
+        
         /*AccountUser account = new AccountUser();*/
-        Company? comp = null;
         /*bool flag = true;
         User curUsr = null;*/
         public void HandleCompanyServices()
@@ -20,11 +26,11 @@ namespace Project_application.Services
 
             while (companyLoggedIn)
             {
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("///////////////////////////////////////////////COMPANY MENU////////////////////////////////////////////////////");
+                Console.ForegroundColor = ConsoleColor.White; 
                 Console.WriteLine("Select an option:");
-                Console.WriteLine("1) Create Job\n2) Delete Job\n3) Modify Account\n4)Display Created Jobs\n5) Logout");
-                Console.WriteLine("///////////////////////////////////////////////////////////////////////////////////////////////////");
-
+                Console.WriteLine("1) Create Job\n2) Delete Job\n3) Modify Posted Job Details\n4)Display Created Jobs\n5) Logout");
                 int companyOption = Convert.ToInt32(Console.ReadLine());
 
                 switch (companyOption)
@@ -53,9 +59,18 @@ namespace Project_application.Services
                         {
                             Console.WriteLine("Deleting a job...");
                             comp.displaycreatedJObsCompany();
-                            Console.WriteLine("Choose ID to Delete");
-                            long jobId = long.Parse(Console.ReadLine());
-                            comp.deleteJob(jobId);
+                            
+                            if(comp.user != null && comp.user.createdJobs != null && comp.user.createdJobs.Count > 0)
+                            {
+                                Console.WriteLine("Choose ID to Delete");
+                                long jobId = long.Parse(Console.ReadLine());
+                                comp.deleteJob(jobId);
+                            }
+                            else
+                            {
+                                Console.WriteLine("No Jobs present at the moment to Delete");
+                            }
+                           
                         }
                         break;
 

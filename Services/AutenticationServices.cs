@@ -14,7 +14,6 @@ namespace Project_application.Services
     {
         AccountUser account = new AccountUser();
         Company? comp = null;
-        /*bool flag = true;*/
         User curUsr = null;
         public void Login()
         {
@@ -50,12 +49,13 @@ namespace Project_application.Services
                         string userType = account.GetUserType(phone_number);
                         if (userType.ToUpper() == "USER")
                         {
-                            UserServices userServices = new UserServices();
-                            userServices.HandleUserLoggedIn();
+                            curUsr=account.FindUser(phone_number);
+                            UserServices userServices = new UserServices(curUsr);
+                            userServices.HandleUserLoggedIn(curUsr);
                         }
                         else if (userType.ToUpper() == "COMPANY")
                         {
-                            CompanyServices companyServices = new CompanyServices();
+                            CompanyServices companyServices = new CompanyServices(curUsr);
                             companyServices.HandleCompanyServices();
                         }
                     }
@@ -63,7 +63,7 @@ namespace Project_application.Services
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("CAPTCHA verification failed. Please try again.");
-                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 }else
                 {

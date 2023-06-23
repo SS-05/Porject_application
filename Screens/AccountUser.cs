@@ -30,15 +30,15 @@ namespace Project_application.Screens
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
-        public  void dispAppliedJobs(List<Job> jobs)
+        public  void dispAppliedJobs(List<Job>? jobs) 
         {
-            if(jobs != null && jobs.Count > 0)
+            if (jobs != null && jobs.Count > 0)
             {
                 foreach (Job item in jobs)
 
                 {
                     Console.WriteLine("Company name:{0}", item.company_name);
-                    Console.WriteLine("Min years of expereince neeeded {0}", item.yoe);
+                    Console.WriteLine("Min years of experience needed {0}", item.yoe);
                     Console.WriteLine("The type of job is {0}", item.job_type);
 
                 }
@@ -47,23 +47,9 @@ namespace Project_application.Screens
             {
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("No job vacancy at the present. Check sometimes later");
-            }
-           
-           /* if (new AccountUser().FindUser(id) != null)
-            {
-                foreach (Job item in (new AccountUser().FindUser(id).applidJobs))
+                Console.ForegroundColor = ConsoleColor.White;
 
-                {
-                    Console.WriteLine("Company name:{0}", item.company_name);
-                    Console.WriteLine("Min years of expereince neeeded {0}", item.yoe);
-                    Console.WriteLine("The type of job is {0}", item.job_type);
-
-                }
             }
-            else
-            {
-                Console.WriteLine("No job vacancy at the present. Check sometimes later");
-            }*/
            
         }
         public User? FindUser(long phoneNumber, string password)
@@ -138,7 +124,6 @@ namespace Project_application.Screens
 
             }
         }
-
         public void UpdateUsername(long user_id, string newUsername, string password)
         {
             User? user = FindUser(user_id, password);
@@ -166,8 +151,7 @@ namespace Project_application.Screens
         {
             /*List<User> registeredUsers = new List<User>();*/
             User user = users.Find(u => u.phone_number == phoneNumber);
-           
-
+            
             if (user != null)
             {
                 return user.user_type;
@@ -177,11 +161,19 @@ namespace Project_application.Screens
         }
         public void DisplayCurrentUser()
         {
-            foreach(var user in users)
+            if (users != null)
             {
-                Console.WriteLine(user.username);
-                Console.WriteLine(user.password);
+                foreach (var user in users)
+                {
+                    Console.WriteLine(user.username);
+                    Console.WriteLine(user.password);
+                }
             }
+            else
+            {
+                Console.WriteLine("No Users available to Display");
+            }
+            
         }
         public void DeleteAccount(long user_id, string password)
         {
@@ -213,7 +205,8 @@ namespace Project_application.Screens
         {
             User user = FindUser(id);
             Console.WriteLine("The applied job list(s) is as follows:");
-            if (user != null && user.applidJobs != null && user.applidJobs.Count> 0) {
+            if (user != null && user.applidJobs != null && user.applidJobs.Count> 0) 
+            {
 
                 foreach (var item in user.applidJobs)
                 {
@@ -237,12 +230,9 @@ namespace Project_application.Screens
             else
             {
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("You havent applied for any job");
+                Console.WriteLine("You have'nt applied for any job");
                 Console.ForegroundColor = ConsoleColor.White;
             }
-           
-            
-
         }
         public string GenerateRandomString(int length)
         {

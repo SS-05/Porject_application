@@ -10,21 +10,28 @@ using System.Threading.Tasks;
 namespace Project_application.Services
 {
     public class UserServices
+
     {
+        User curUsr;
+        public UserServices(User curUser)
+        {
+            this.curUsr = curUser;
+        }
         AccountUser account = new AccountUser();
         Company? comp = null;
         /*bool flag = true;*/
-        User curUsr = null;
-        public void HandleUserLoggedIn()
+        //User curUsr = null;
+        public void HandleUserLoggedIn(User usr)
         {
             bool userLoggedIn = true;
 
             while (userLoggedIn)
             {
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("///////////////////////////////////////////////USER MENU////////////////////////////////////////////////////");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Select an option:");
                 Console.WriteLine("1) Update Username\n2) Update Password\n3) Delete Account\n4)Apply Job\n5)View Applied Job(s)\n6)Withdraw Application\n7) Display Users\n8)Logout");
-                Console.WriteLine("///////////////////////////////////////////////////////////////////////////////////////////////////");
 
                 int userOption = Convert.ToInt32(Console.ReadLine());
 

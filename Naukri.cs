@@ -12,7 +12,11 @@ namespace Project_application
         {
             bool flag = true;
             Naukri authenticationServices = new Naukri();
-
+            Console.WriteLine("        |\\    |    /\\    |       ||   /|------| |");  
+            Console.WriteLine("        | \\   |   /  \\   |       ||  / |      | |");
+            Console.WriteLine("        |  \\  |  /----\\  |       ||||  |    __| |");
+            Console.WriteLine("        |   \\ | /      \\ |       ||  \\ |   \\    |");
+            Console.WriteLine("        |    \\|/        \\|_______||   \\|    \\   | \n\n");
 
             while (flag)
             {

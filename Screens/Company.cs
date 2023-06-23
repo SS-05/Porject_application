@@ -15,37 +15,51 @@ using Project_application.Models;
 namespace Project_application.Screens
 
 {
-
     internal  class Company : Company_abst
 
     {
-
-        public User user;
-        public Company(User comp_user) : base(comp_user)
+        public User? user;
+        public Company(User? comp_user) : base(comp_user)
         {
             // Constructor implementation
             user = comp_user;
         }
         public override void createJob(Job job)
         {
+            
             if (user.createdJobs == null)
             {
                 user.createdJobs = new List<Job>();
             }
+         
             user.createdJobs.Add(job);
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Job created");
+            Console.WriteLine("Job ID", job.Id);
+            Console.WriteLine("Company Name", job.company_name);
+            Console.WriteLine("Years of Experience", job.yoe);
+            Console.WriteLine("Job Type", job.job_type);
+            Console.WriteLine("Location", job.location);
+            Console.WriteLine("Shift", job.shift);
+            Console.WriteLine("Skillset", job.skillset);
+            Console.ForegroundColor = ConsoleColor.White;
 
         }
 
         public override void deleteJob(long id)
 
         {
+            
             Job jobToDelete = user.createdJobs.FirstOrDefault(job => job.Id == id);
+            if (jobToDelete != null)
+            { 
+                user.createdJobs.Remove(jobToDelete);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Job deleted!!");
+                Console.ForegroundColor = ConsoleColor.White;
 
-
-            user.createdJobs.Remove(jobToDelete);
-
-            Console.WriteLine("Job deleted");
+            }
+           
 
         }public override void updateJob(long jobId)
 
@@ -54,12 +68,15 @@ namespace Project_application.Screens
 
             if (jobToDelete == null)
             {
-                Console.WriteLine("Job Not Found to update");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Job Not Found to update!!");
+                Console.ForegroundColor = ConsoleColor.White;
                 //return;
 
             }
             else
             {
+               // displaycreatedJObsCompany();
                 int index = user.createdJobs.IndexOf(jobToDelete);
                 Console.WriteLine("Enter the field you wish to update");
                 Console.WriteLine("Select\n1)Location\n2)Shift\n3)Skillset\n4)Years of experience");
@@ -71,9 +88,6 @@ namespace Project_application.Screens
                             Console.WriteLine("Enter the updated location");
                             string location = Console.ReadLine();
                             jobToDelete.location = location;
-                            user.createdJobs[index] = jobToDelete;
-
-
                         }
                         break;
                     case 2:
@@ -82,8 +96,6 @@ namespace Project_application.Screens
                             string shift = Console.ReadLine();
                             jobToDelete.shift = shift;
                             user.createdJobs[index] = jobToDelete;
-
-
                         }
                         break;
                     case 3:
@@ -92,8 +104,6 @@ namespace Project_application.Screens
                             string skillset = Console.ReadLine();
                             jobToDelete.skillset = skillset;
                             user.createdJobs[index] = jobToDelete;
-
-
                         }
                         break;
                     case 4:
@@ -102,13 +112,13 @@ namespace Project_application.Screens
                             int yoe = Convert.ToInt32(Console.ReadLine());
                             jobToDelete.yoe = yoe;
                             user.createdJobs[index] = jobToDelete;
-
-
                         }
                         break;
                     default:
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Invalid option");
+                            Console.ForegroundColor = ConsoleColor.White ;
                         }
                         break;
                 }
@@ -117,14 +127,15 @@ namespace Project_application.Screens
         }
 
         //display own jobs and users applied to them
-
         //apply filters based on experience, education, skills, etc.
         public override void showallcpompjobstoApply()
             
         {
             if (user.createdJobs == null || user.createdJobs.Count == 0)
             {
-                Console.WriteLine("No Jobs are Created");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("No Jobs are Created for now");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else
             {
@@ -147,31 +158,45 @@ namespace Project_application.Screens
          }
         public override void displaycreatedJObsCompany()
         {
-            if(user.createdJobs!=null && user.createdJobs.Count > 0)
+            
+            if(user!= null && user.createdJobs!=null && user.createdJobs.Count > 0)
             {
                 user.createdJobs.
                 ForEach(user =>
                 {
-                    Console.WriteLine(user.company_name);
-                    Console.WriteLine(user.skillset);
-                    Console.WriteLine(user.yoe);
-                    Console.WriteLine(user.shift);
-                    Console.WriteLine(user.location);
+                    int columnWidth = 20;
+
+                    // Print the table headers
+                    Console.WriteLine("ID".PadRight(columnWidth) +
+                                      "Company Name".PadRight(columnWidth) +
+                                      "Skillset".PadRight(columnWidth) +
+                                      "Years of Experience".PadRight(columnWidth) +
+                                      "Shift".PadRight(columnWidth) +
+                                      "Location".PadRight(columnWidth));
+
+                    // Print the user data
+                    Console.WriteLine(user.Id.ToString().PadRight(columnWidth) +
+                                      user.company_name.PadRight(columnWidth) +
+                                      user.skillset.PadRight(columnWidth) +
+                                      user.yoe.ToString().PadRight(columnWidth) +
+                                      user.shift.PadRight(columnWidth) +
+                                      user.location.PadRight(columnWidth));
+
                 });
             }
             else
             {
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 Console.WriteLine("No jobs for now:(");
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
+                Console.ForegroundColor = ConsoleColor.White;
 
             }
         }
         public override void dispApplicants(List<User> users)
         {
-
             //display users
-
             foreach (User user in users)
             {
 
